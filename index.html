@@ -237,6 +237,33 @@
     position: relative;
   }
 
+  /* Ensure navigation links are visible */
+  .header__links-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+  }
+
+  .header__links-list a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 17px;
+  }
+
+  .header__links-list a:hover {
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.1);
+  }
+
 
   
 
@@ -1335,7 +1362,7 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
       <div class="scroll-sentinal scroll-sentinal--start" data-position="start"></div>
       <nav class="header__links header__links-primary" data-navigation>
 
-<ul class="header__links-list fs-navigation-base" style="display: flex !important; transform: translateY(40px); z-index: 10; position: relative;">
+<ul class="header__links-list fs-navigation-base" style="display: flex !important; z-index: 10; position: relative;">
     <li><a href="pages/events.html" class="" data-link><span class="link-hover">EVENTS</span></a></li>
     <li><a href="pages/artists.html" class="" data-link><span class="link-hover">ARTISTS</span></a></li>
     <li><a href="pages/releases.html" class="" data-link><span class="link-hover">RELEASES</span></a></li>
