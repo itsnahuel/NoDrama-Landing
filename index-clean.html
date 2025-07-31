@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoDrama Records Official Website</title>
+    
+    <style>
+        @font-face {
+            font-family: 'HelveticaNowBold';
+            src: url('fonts/helvetica-now-bold.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            background: #000;
+            color: #fff;
+            font-family: 'HelveticaNowBold', 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Container */
+        .dark-veil-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .darkveil-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Main Page Container */
+        .page {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 24px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #111;
+        }
+
+        .announcement-bar a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .announcement-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* Header Container */
+        .header {
+            background: #000;
+            text-align: center;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            padding: 24px 0;
+            border-bottom: 1px solid #111;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-main {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            animation: fuzzy-pulse 3s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+
+        .logo-subtitle {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: fuzzy-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes fuzzy-pulse {
+            0%, 100% { 
+                filter: blur(0.5px) brightness(1);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            50% { 
+                filter: blur(1px) brightness(1.1);
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        /* Navigation */
+        .navigation {
+            background: #000;
+            padding: 24px 0;
+            border-bottom: 1px solid #111;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 14px;
+            padding: 10px 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: linear-gradient(135deg, #8B0000 0%, #FF0000 50%, #8B0000 100%);
+            min-height: 60vh;
+            padding: 24px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .content-wrapper {
+            max-width: 800px;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .main-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .announcement-bar {
+                padding: 16px 10px;
+                font-size: 12px;
+            }
+
+            .logo-section {
+                padding: 16px 0;
+            }
+
+            .logo-main {
+                font-size: 2rem;
+                margin-bottom: 6px;
+            }
+
+            .logo-subtitle {
+                font-size: 1rem;
+            }
+
+            .navigation {
+                padding: 16px 0;
+            }
+
+            .nav-links {
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .main-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="dark-veil-background">
+        <canvas class="darkveil-canvas" id="dark-veil-canvas"></canvas>
+    </div>
+
+    <!-- Main Page Container -->
+    <div class="page">
+        <!-- Announcement Bar -->
+        <div class="announcement-bar">
+            <a href="https://laylo.com/nodramasf/Collection017" target="_blank">
+                <strong>JOIN THE WAITLIST FOR DROP 017</strong>
+            </a>
+        </div>
+
+        <!-- Header -->
+        <header class="header">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <a href="index.html" class="logo-main">NoDrama Records</a>
+                    <div class="logo-subtitle">San Francisco, CA</div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="navigation">
+                <ul class="nav-links">
+                    <li><a href="pages/events.html">EVENTS</a></li>
+                    <li><a href="pages/artists.html">ARTISTS</a></li>
+                    <li><a href="pages/releases.html">RELEASES</a></li>
+                    <li><a href="pages/merch.html">MERCH</a></li>
+                    <li><a href="pages/studio.html">STUDIO</a></li>
+                    <li><a href="pages/podcasts-streams.html">PODCASTS/STREAMS</a></li>
+                    <li><a href="pages/contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <h1 class="main-title">Welcome to NoDrama Records</h1>
+                <p class="main-subtitle">Electronic music, events, touring, merchandise, and more from San Francisco's cutting-edge house music label.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Dark Veil Animation Script -->
+    <script>
+    (function() {
+        'use strict';
+        
+        const vertexShaderSource = `
+            attribute vec2 a_position;
+            void main() {
+                gl_Position = vec4(a_position, 0.0, 1.0);
+            }
+        `;
+
+        const fragmentShaderSource = `
+            precision mediump float;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            
+            void main() {
+                vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                vec2 center = vec2(0.5, 0.5);
+                
+                float time = u_time * 0.001;
+                
+                // Create multiple moving aurora layers
+                vec3 color = vec3(0.0);
+                
+                for(int i = 0; i < 3; i++) {
+                    float fi = float(i);
+                    vec2 offset = vec2(sin(time * 0.3 + fi), cos(time * 0.2 + fi)) * 0.3;
+                    vec2 pos = uv + offset;
+                    
+                    float wave1 = sin(pos.x * 3.0 + time * 2.0 + fi) * 0.5 + 0.5;
+                    float wave2 = sin(pos.y * 2.0 + time * 1.5 + fi) * 0.5 + 0.5;
+                    float wave3 = sin((pos.x + pos.y) * 4.0 + time * 3.0 + fi) * 0.5 + 0.5;
+                    
+                    float dist = distance(pos, center);
+                    float fade = 1.0 - smoothstep(0.0, 0.8, dist);
+                    
+                    float intensity = wave1 * wave2 * wave3 * fade * 0.3;
+                    
+                    // Different colors for each layer
+                    if(i == 0) {
+                        color += vec3(intensity * 0.2, intensity * 0.1, intensity * 0.4); // Purple
+                    } else if(i == 1) {
+                        color += vec3(intensity * 0.1, intensity * 0.3, intensity * 0.2); // Green
+                    } else {
+                        color += vec3(intensity * 0.3, intensity * 0.1, intensity * 0.1); // Red
+                    }
+                }
+                
+                gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
+            }
+        `;
+
+        function createShader(gl, type, source) {
+            const shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error('Error compiling shader:', gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            
+            return shader;
+        }
+
+        function createProgram(gl, vertexShader, fragmentShader) {
+            const program = gl.createProgram();
+            gl.attachShader(program, vertexShader);
+            gl.attachShader(program, fragmentShader);
+            gl.linkProgram(program);
+            
+            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                console.error('Error linking program:', gl.getProgramInfoLog(program));
+                gl.deleteProgram(program);
+                return null;
+            }
+            
+            return program;
+        }
+
+        function initDarkVeil() {
+            const canvas = document.getElementById('dark-veil-canvas');
+            if (!canvas) {
+                console.error('Canvas element not found!');
+                return;
+            }
+
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) {
+                console.error('WebGL not supported');
+                return;
+            }
+
+            // Create shaders
+            const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+            const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+            const program = createProgram(gl, vertexShader, fragmentShader);
+
+            if (!program) {
+                return;
+            }
+
+            // Get attribute and uniform locations
+            const positionAttributeLocation = gl.getAttribLocation(program, 'a_position');
+            const timeUniformLocation = gl.getUniformLocation(program, 'u_time');
+            const resolutionUniformLocation = gl.getUniformLocation(program, 'u_resolution');
+
+            // Create buffer
+            const positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            
+            // Define a full-screen quad
+            const positions = [
+                -1, -1,
+                 1, -1,
+                -1,  1,
+                -1,  1,
+                 1, -1,
+                 1,  1,
+            ];
+            
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                gl.viewport(0, 0, canvas.width, canvas.height);
+            }
+
+            function render(time) {
+                resizeCanvas();
+                
+                gl.clearColor(0, 0, 0, 1);
+                gl.clear(gl.COLOR_BUFFER_BIT);
+                
+                gl.useProgram(program);
+                
+                gl.enableVertexAttribArray(positionAttributeLocation);
+                gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+                gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+                
+                gl.uniform1f(timeUniformLocation, time);
+                gl.uniform2f(resolutionUniformLocation, canvas.width, canvas.height);
+                
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+                
+                requestAnimationFrame(render);
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Start animation
+            requestAnimationFrame(render);
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initDarkVeil);
+        } else {
+            initDarkVeil();
+        }
+    })();
+    </script>
+</body>
+</html>

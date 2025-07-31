@@ -584,7 +584,7 @@ clamp(0.67224375rem, 0.6575830110497237rem + 0.06255248618784531vw, 0.707625rem)
             background: #000 !important;
             color: #fff;
             text-align: center;
-            padding: 10px 0;
+            padding: 8px 0;
         }
         
         .header__space {
@@ -1165,7 +1165,8 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
         .header__row.header__row-desktop.lower.three-segment[style*="height: 100%"] {
             height: auto !important;
             align-items: center !important;
-            padding: 10px 0 !important;
+            padding: 8px 0 !important;
+            margin-bottom: 0 !important;
         }
         
         .header__inner {
@@ -1192,18 +1193,19 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
         
         .header__row.upper {
             justify-content: flex-end !important;
-            padding: 10px 0;
+            padding: 8px 0;
         }
         
         .header__row.logo-only {
             justify-content: center !important;
-            padding: 20px 0;
+            padding: 12px 0;
         }
         
         .header__row.lower.three-segment {
             display: grid !important;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
+            padding: 8px 0 !important;
         }
         
         .header__row-segment.left {
@@ -1287,7 +1289,7 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
             background: #000 !important;
             color: #fff;
             text-align: center;
-            padding: 10px 0;
+            padding: 8px 0;
         }
         
         /* Ensure the header space also has black background */
@@ -1473,6 +1475,55 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
         
         main {
             flex: 1;
+        }
+        
+        /* Reduce top padding of first section after header for tighter layout */
+        .shopify-section:first-child .section {
+            padding-top: 8px !important;
+            margin-top: 0 !important;
+        }
+        
+        /* Specific targeting for video-hero sections */
+        .shopify-section:first-child .video-hero {
+            padding-top: 8px !important;
+            margin-top: 0 !important;
+        }
+        
+        /* Additional header spacing tightening */
+        .header {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Remove any default spacing on the body after header */
+        body {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        
+        /* Target all sections immediately following the header */
+        .shopify-section:nth-child(1),
+        .shopify-section:nth-child(2) {
+            margin-top: 0 !important;
+            padding-top: 8px !important;
+        }
+        
+        /* Override any inline styles on the lower header row */
+        .header__row.lower.three-segment[style] {
+            padding: 8px 0 !important;
+            padding-bottom: 8px !important;
+        }
+        
+        /* Ensure main content starts immediately after header */
+        main {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        
+        /* Target the page wrapper */
+        .page {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
     </style>
 </head>
@@ -1714,7 +1765,7 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
     style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;"
   >
     <canvas id="fuzzy-text-canvas-1" style="display: block;"></canvas>
-    <canvas id="fuzzy-text-location-1" style="display: block; margin-top: 10px;"></canvas>
+    <canvas id="fuzzy-text-location-1" style="display: block; margin-top: 3px;"></canvas>
     
 
 
@@ -1940,7 +1991,7 @@ window.ShopifyPay.apiHost = "shop.app\/pay";</script>
     style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%;"
   >
     <canvas id="fuzzy-text-canvas-1" style="display: block;"></canvas>
-    <canvas id="fuzzy-text-location-1" style="display: block; margin-top: 10px;"></canvas>
+    <canvas id="fuzzy-text-location-1" style="display: block; margin-top: 3px;"></canvas>
     
 
 
